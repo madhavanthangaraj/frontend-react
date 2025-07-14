@@ -1,25 +1,17 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  async function handleLogin(event) {
-    event.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3001/api/auth/login", {
-        userName,
-        password,
-      });
-      console.log(response.data);
-      alert("Login Successful");
-    } catch (e) {
-      console.error("Login Error", e);
-      alert("Invalid Credentials");
-    }
-  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    alert(`Logging in with\nUsername: ${userName}`);
+    // Add backend login logic here
+  };
 
   return (
     <div className="login-container">
@@ -28,9 +20,8 @@ const Login = () => {
         <label htmlFor="userName">User Name</label>
         <input
           id="userName"
-          name="userName"
-          value={userName}
           type="text"
+          value={userName}
           placeholder="Enter your username"
           onChange={(e) => setUserName(e.target.value)}
         />
@@ -38,15 +29,19 @@ const Login = () => {
         <label htmlFor="password">Password</label>
         <input
           id="password"
-          name="password"
-          value={password}
           type="password"
+          value={password}
           placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button type="submit">Login</button>
       </form>
+
+      <div className="signup-redirect">
+        <p>Don't have an account?</p>
+        <button onClick={() => navigate("/register")}>Sign Up</button>
+      </div>
     </div>
   );
 };
