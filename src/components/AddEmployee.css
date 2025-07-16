@@ -1,0 +1,70 @@
+.add-employee-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-employee-container h2 {
+  margin-bottom: 20px;
+  color: #2d3a4a;
+}
+.add-employee-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.add-employee-container label {
+  font-weight: 500;
+  color: #444;
+}
+.add-employee-container input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 4px;
+}
+.add-employee-container button[type="submit"] {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+.add-employee-container button[type="submit"]:hover {
+  background: #115293;
+}
+.add-employee-container .success {
+  color: #388e3c;
+  margin-left: 10px;
+}
+.add-employee-container .error {
+  color: #d32f2f;
+  margin-left: 10px;
+}
+.add-employee-container .back-btn {
+  margin-top: 20px;
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 8px 0;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+.add-employee-container .back-btn:hover {
+  background: #ccc;
+}
