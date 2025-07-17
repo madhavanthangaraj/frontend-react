@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import './HomePage.css';
+import EmployeeDetailsForm from './EmployeeDetailsForm';
+import EmployeeDetailsList from './EmployeeDetailsList';
 
 const HomePage = () => {
   // ...existing state
@@ -198,14 +200,9 @@ const HomePage = () => {
           </div>
         )}
         {displayEmployee && (
-          <div style={{marginTop:'24px',padding:'20px',background:'#f6f6fa',borderRadius:'8px',boxShadow:'0 2px 8px rgba(0,0,0,0.08)',maxWidth:'400px'}}>
-            <h3>Employee Details</h3>
-            <p><strong>Employee ID:</strong> {displayEmployee.empID || displayEmployee.id}</p>
-            <p><strong>Name:</strong> {displayEmployee.name}</p>
-            <p><strong>Job/Role:</strong> {displayEmployee.job || displayEmployee.role || '-'}</p>
-            <button style={{marginTop:'12px',background:'#aaa',color:'#fff',border:'none',padding:'6px 16px',borderRadius:'5px',cursor:'pointer'}} onClick={closeDisplayEmployee}>Close</button>
-          </div>
+          <EmployeeDetailsForm empId={displayEmployee.empID || displayEmployee.id} onClose={closeDisplayEmployee} />
         )}
+        <EmployeeDetailsList />
       </div>
     </div>
   );
