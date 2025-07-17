@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 import './RegisterForm.css';
 
 const roleOptions = [
@@ -63,14 +64,20 @@ const RegisterForm = () => {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      {error && <div className="error">{error}</div>}
-      {success && <div className="success">{success}</div>}
-      <div className="form-row">
-        <label>Name</label>
-        <input type="text" name="name" value={form.name} onChange={handleChange} required />
-      </div>
+    <>
+      <Header />
+      <form className="register-form register-form-professional" onSubmit={handleSubmit}>
+        <h2>Register</h2>
+        <div className="info-bar" style={{background:'#e3f2fd',color:'#1976d2',borderRadius:8,padding:'10px 18px',marginBottom:18,display:'flex',alignItems:'center',gap:10}}>
+          <span role="img" aria-label="info" style={{fontSize:22}}>📝</span>
+          <span>Tip: Fill out all fields to create your account. Use a strong password!</span>
+        </div>
+        {error && <div className="error">{error}</div>}
+        {success && <div className="success">{success}</div>}
+        <div className="form-row">
+          <label>Name</label>
+          <input type="text" name="name" value={form.name} onChange={handleChange} required />
+        </div>
       <div className="form-row">
         <label>Username</label>
         <input type="text" name="userName" value={form.userName} onChange={handleChange} required />
@@ -109,17 +116,18 @@ const RegisterForm = () => {
           </label>
         </div>
       </div>
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading} className="register-btn-professional">
         {loading ? 'Registering...' : 'Register'}
       </button>
       <button
         type="button"
-        style={{ marginTop: 10, background: '#fff', color: '#1976d2', border: '1.5px solid #1976d2', fontWeight: 600 }}
+        className="back-btn-professional"
         onClick={() => navigate('/')}
       >
         Back to Home
       </button>
     </form>
+  </>
   );
 };
 

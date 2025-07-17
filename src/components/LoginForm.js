@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 import './RegisterForm.css';
 
 const LoginForm = () => {
@@ -43,29 +44,35 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit} style={{ maxWidth: 420, marginTop: 60 }}>
-      <h2>Login</h2>
-      {error && <div className="error">{error}</div>}
-      <div className="form-row">
-        <label>Username</label>
-        <input type="text" name="userName" value={form.userName} onChange={handleChange} required />
-      </div>
-      <div className="form-row">
-        <label>Password</label>
-        <input type="password" name="password" value={form.password} onChange={handleChange} required />
-      </div>
-      <button type="submit" disabled={loading}>
-        {loading ? 'Logging in...' : 'Login'}
-      </button>
-      <button
-        type="button"
-        className="signup-btn"
-        style={{ marginTop: 16, background: '#fff', color: '#1976d2', border: '1.5px solid #1976d2', fontWeight: 600 }}
-        onClick={() => navigate('/register')}
-      >
-        Sign Up
-      </button>
-    </form>
+    <>
+      <Header />
+      <form className="register-form login-form-professional" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <div className="info-bar" style={{background:'#e3f2fd',color:'#1976d2',borderRadius:8,padding:'10px 18px',marginBottom:18,display:'flex',alignItems:'center',gap:10}}>
+          <span role="img" aria-label="info" style={{fontSize:22}}>🔒</span>
+          <span>Tip: Enter your credentials to access the Employee Management System.</span>
+        </div>
+        {error && <div className="error">{error}</div>}
+        <div className="form-row">
+          <label>Username</label>
+          <input type="text" name="userName" value={form.userName} onChange={handleChange} required />
+        </div>
+        <div className="form-row">
+          <label>Password</label>
+          <input type="password" name="password" value={form.password} onChange={handleChange} required />
+        </div>
+        <button type="submit" disabled={loading} className="login-btn-professional">
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+        <button
+          type="button"
+          className="signup-btn-professional"
+          onClick={() => navigate('/register')}
+        >
+          Sign Up
+        </button>
+      </form>
+    </>
   );
 };
 
