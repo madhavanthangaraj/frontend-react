@@ -1,0 +1,20 @@
+.home-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  transition: background 0.2s;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+.home-btn:last-child {
+  margin-right: 0;
+}
+.home-btn:hover {
+  background: #115293;
+}
