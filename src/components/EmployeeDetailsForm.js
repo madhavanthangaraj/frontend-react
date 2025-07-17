@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import './EmployeeDetailsForm.css';
+import { formatEmployeeName } from './employeeUtils';
 
 const EmployeeDetailsForm = ({ empId, onClose }) => {
   const [employee, setEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchName, setSearchName] = useState('');
 
+  // Fetch by ID (default)
   useEffect(() => {
     if (!empId) return;
     setLoading(true);
@@ -28,10 +32,52 @@ const EmployeeDetailsForm = ({ empId, onClose }) => {
       });
   }, [empId]);
 
-  if (!empId) return null;
+  // Search by name
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!searchName.trim()) return;
+    setLoading(true);
+    setError(null);
+    setEmployee(null);
+    fetch(`/employee/name/${encodeURIComponent(searchName.trim())}`)
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then(text => {
+            throw new Error(`No employee found with name '${searchName}'. Status: ${response.status}. Body: ${text}`);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setEmployee(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  };
+
+  if (!empId && !employee) return (
+    <div className="employee-details-form-container">
+      <h3>Employee Details</h3>
+      <form onSubmit={handleSearch} style={{marginBottom:'16px',display:'flex',gap:'8px'}}>
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={searchName}
+          onChange={e => setSearchName(e.target.value)}
+          style={{flex:1,padding:'6px',borderRadius:'4px',border:'1px solid #ccc'}}
+        />
+        <button type="submit" className="close-btn">Search</button>
+      </form>
+      {loading && <p>Loading...</p>}
+      {error && <p style={{color:'red'}}>Error: {error}</p>}
+    </div>
+  );
 
   return (
-    <div style={{marginTop:'24px',padding:'20px',background:'#f6f6fa',borderRadius:'8px',boxShadow:'0 2px 8px rgba(0,0,0,0.08)',maxWidth:'400px'}}>
+    <div className="employee-details-form-container">
       <h3>Employee Details</h3>
       {loading && <p>Loading...</p>}
       {error && <p style={{color:'red'}}>Error: {error}</p>}

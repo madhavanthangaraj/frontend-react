@@ -29,7 +29,7 @@ const EmployeeDetailsList = () => {
   }, []);
 
   return (
-    <div style={{marginTop:'32px'}}>
+    <div className="employee-details-list-container">
       <h2>All Employee Details</h2>
       {loading && <p>Loading all employees...</p>}
       {error && <p style={{color:'red'}}>Error: {error}</p>}

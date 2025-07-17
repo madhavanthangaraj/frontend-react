@@ -1,0 +1,37 @@
+/* EmployeeDetailsForm.css */
+.employee-details-form-container {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f6f6fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  max-width: 400px;
+}
+.employee-details-form-container h3 {
+  margin-bottom: 18px;
+}
+.employee-details-form-container form {
+  margin-bottom: 12px;
+}
+.employee-details-form-container label {
+  font-weight: bold;
+  margin-bottom: 2px;
+  display: block;
+}
+.employee-details-form-container input[readonly] {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  background: #e9ecef;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.employee-details-form-container .close-btn {
+  margin-top: 12px;
+  background: #aaa;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
